@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C Syntax Studio — Live C IDE</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">C</span>
+    <div>
+      <strong>C Syntax Studio</strong>
+      <small>Web-based C programming workspace</small>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="newBtn" class="btn ghost">＋ New</button>
+    <button id="uploadBtn" class="btn ghost">Upload .c</button>
+    <input id="fileInput" type="file" accept=".c,text/plain" hidden>
+    <button id="saveBtn" class="btn ghost">Save</button>
+    <button id="downloadBtn" class="btn ghost">Download</button>
+    <button id="themeBtn" class="btn ghost">☼ Theme</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <aside class="sidebar">
+    <div class="side-heading">
+      <span>EXPLORER</span>
+      <button id="refreshBtn" title="Refresh saved programs">↻</button>
+    </div>
+    <div class="side-subtitle">SAVED PROGRAMS</div>
+    <div id="savedList" class="saved-list">
+      <p class="muted">Loading programs…</p>
+    </div>
+    <div class="side-note">Saved programs are stored locally in your browser workspace.</div>
+  </aside>
+
+  <section class="main-area">
+    <div class="tabbar">
+      <div class="tab active">
+        <span class="c-dot">C</span>
+        <span id="tabName">untitled.c</span>
+        <span class="tab-status" id="dirtyMark"></span>
+      </div>
+      <div class="tab-spacer"></div>
+      <span class="language-tag">C</span>
+    </div>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <span class="status-dot"></span>
+        <span id="statusText">Ready</span>
+      </div>
+      <div class="toolbar-right">
+        <button id="analyzeBtn" class="btn small ghost">Analyze</button>
+        <button id="compileBtn" class="btn small primary">▶ Compile &amp; Run</button>
+      </div>
+    </div>
+    <div id="editor"></div>
+    <section class="bottom-panel">
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-panel="terminal">TERMINAL</button>
+        <button class="panel-tab" data-panel="problems">PROBLEMS</button>
+        <button class="panel-tab" data-panel="stats">CODE STATS</button>
+        <span id="runStatus" class="run-status">No run yet</span>
+      </div>
+      <div id="terminalPanel" class="panel-content">
+        <div class="input-row">
+          <label for="stdin">Program input (stdin)</label>
+          <textarea id="stdin" rows="2" placeholder="Enter input for scanf(), if needed…"></textarea>
+        </div>
+        <div class="output-heading">
+          OUTPUT
+          <button id="clearOutputBtn" class="btn small ghost" style="float:right;padding:2px 7px">Clear</button>
+        </div>
+        <pre id="output" class="output">Compile and run your C program to see the result here.</pre>
+        <pre id="errors" class="errors"></pre>
+      </div>
+      <div id="problemsPanel" class="panel-content hidden">
+        <div id="problemText" class="muted">Compiler errors and warnings will appear here after a run.</div>
+      </div>
+      <div id="statsPanel" class="panel-content hidden">
+        <div id="statsGrid" class="stats-grid">
+          <p class="muted">Click Analyze to inspect your code.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="footer">
+  <span>C Syntax Studio</span>
+  <span>Monaco Editor · GCC Runner · Code Analysis</span>
+  <span id="footerMessage">Ready</span>
+</footer>
+
+<script src="static/js/editor.js"></script>
+</body>
+</html>
